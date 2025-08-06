@@ -12,6 +12,7 @@ import {
   Search as SearchIcon,
   GridView as GridViewIcon,
 } from "@mui/icons-material";
+import { Logo } from "../ui/Logo";
 
 interface TopNavigationProps {
   onMobileMenuToggle?: () => void;
@@ -38,8 +39,14 @@ export function TopNavigation({ onMobileMenuToggle }: TopNavigationProps) {
         py: 1,
         minHeight: "64px",
       }}>
-        {/* Left Section - Mobile Menu Only */}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        {/* Left Section - Logo and Mobile Menu */}
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+            <Logo variant="default" size={112} />
+          </Box>
+          <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+            <Logo variant="icon" />
+          </Box>
           {isMobile && (
             <IconButton
               edge="start"

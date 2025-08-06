@@ -19,6 +19,7 @@ import {
   Settings as SettingsIcon,
   Menu as MenuIcon,
 } from "@mui/icons-material";
+import { Logo } from '@/components/ui/Logo';
 
 interface SidebarProps {
   mobileOpen?: boolean;
@@ -134,52 +135,27 @@ export function Sidebar({
         alignItems: "center",
         justifyContent: isExpanded ? "space-between" : "center",
         minHeight: "64px",
+        position: 'relative',
       }}>
-        {isExpanded ? (
-          <>
-            <Image
-              src="/logo.svg"
-              alt="Wallet Ledger Logo"
-              width={112}
-              height={25}
-              style={{ height: 'auto' }}
-            />
-            <IconButton
-              size="small"
-              sx={{
-                color: "text.secondary",
-                display: { md: "none" },
-                "&:hover": {
-                  bgcolor: "rgba(107, 114, 128, 0.1)",
-                },
-              }}
-              onClick={onMobileClose}
-            >
-              <MenuIcon fontSize="small" />
-            </IconButton>
-          </>
-        ) : (
-          <Box
+        
+        {isExpanded && (
+          <IconButton
+            size="small"
             sx={{
-              width: 32,
-              height: 32,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              transition: "all 0.2s ease-in-out",
+              color: "text.secondary",
+              display: { md: "none" },
               "&:hover": {
-                transform: "scale(1.05)",
+                bgcolor: "rgba(107, 114, 128, 0.1)",
               },
+              position: 'absolute',
+              right: 8,
+              top: '50%',
+              transform: 'translateY(-50%)',
             }}
+            onClick={onMobileClose}
           >
-             <Image
-              src="/logo-icon.svg"
-              alt="Wallet Ledger Logo"
-              width={112}
-              height={33}
-              style={{ height: 'auto' }}
-            />
-          </Box>
+            <MenuIcon fontSize="small" />
+          </IconButton>
         )}
       </Box>
 
