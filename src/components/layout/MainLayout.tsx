@@ -27,25 +27,19 @@ export function MainLayout({ children }: MainLayoutProps) {
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
         minHeight: "100vh",
         bgcolor: "background.default",
       }}
     >
-      <Sidebar mobileOpen={mobileOpen} onMobileClose={handleMobileClose} />
-
-      <Box
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "column",
-          minWidth: 0, // Prevents flex item from growing beyond container
-          width: "100%",
-          transition: "margin-left 0.3s ease-in-out",
-          marginLeft: { xs: 0, md: "72px" }, // Account for collapsed sidebar width
-          position: "relative",
-        }}
-      >
-        <TopNavigation onMobileMenuToggle={handleMobileMenuToggle} />
+      <TopNavigation onMobileMenuToggle={handleMobileMenuToggle} />
+      
+      <Box sx={{ display: "flex", flex: 1, overflow: "hidden" }}>
+        <Sidebar 
+          mobileOpen={mobileOpen} 
+          onMobileClose={handleMobileClose} 
+          isMobile={isMobile} 
+        />
 
         <Box
           component="main"
@@ -53,9 +47,10 @@ export function MainLayout({ children }: MainLayoutProps) {
             flexGrow: 1,
             p: { xs: 3, sm: 4, md: 5 },
             maxWidth: "100%",
+            overflow: "auto",
             bgcolor: "background.default",
             position: "relative",
-            zIndex: 1, // Ensure content is below sidebar when expanded
+            marginLeft: { xs: 0, md: "72px" }, // Account for sidebar width
           }}
         >
           <Container

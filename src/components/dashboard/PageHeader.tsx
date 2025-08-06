@@ -182,9 +182,6 @@ export function PageHeader() {
             Ava, Liam, Noah +12 others
           </Typography>
         </Box>
-
-        {/* Tab Navigation */}
-        <TabNavigation />
       </Box>
     </Box>
   );
