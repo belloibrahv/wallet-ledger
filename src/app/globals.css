@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Inter font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* Global styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F8F9FA;
+  color: #1F2937;
+}
+
+/* Remove default scrollbar styling for better consistency */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Custom utility classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Ensure MUI components work well with Tailwind */
+.MuiContainer-root {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Custom focus styles to match design */
+.MuiButton-root:focus-visible,
+.MuiIconButton-root:focus-visible,
+.MuiListItemButton-root:focus-visible {
+  outline: 2px solid #0d9488 !important;
+  outline-offset: 2px !important;
+}
+
+/* Ensure proper spacing for mobile */
+@media (max-width: 768px) {
+  .MuiContainer-root {
+    @apply px-3;
+  }
+}
+
+/* Ensure proper z-index stacking */
+.MuiDrawer-root {
+  z-index: 1200;
+}
+
+.MuiAppBar-root {
+  z-index: 1100;
+}
+
+/* Smooth transitions for better UX */
+.MuiCard-root,
+.MuiButton-root,
+.MuiIconButton-root {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Ensure proper table styling */
+.MuiTableContainer-root {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Avatar group styling */
+.MuiAvatarGroup-root .MuiAvatar-root {
+  border: 2px solid white;
+}
+
+.MuiAvatarGroup-root .MuiAvatar-root:first-of-type {
+  margin-left: 0;
+}
+
+/* Ensure proper card styling */
+.MuiCard-root {
+  border-radius: 12px;
+}
+
+/* Ensure proper button styling */
+.MuiButton-contained {
+  box-shadow: none !important;
+}
+
+.MuiButton-contained:hover {
+  box-shadow: none !important;
+}
+
+/* Ensure proper typography */
+.MuiTypography-root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar hover effects */
+.MuiDrawer-paper {
+  transition: width 0.3s ease-in-out !important;
+}
+
+/* Tooltip styling */
+.MuiTooltip-tooltip {
+  background-color: #1F2937 !important;
+  color: white !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+}
+
+/* Ensure smooth sidebar transitions */
+.MuiListItemButton-root {
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Active state styling for sidebar items */
+.MuiListItemButton-root.Mui-selected {
+  background-color: rgba(13, 148, 136, 0.1) !important;
+  color: #0D9488 !important;
+}
+
+.MuiListItemButton-root.Mui-selected:hover {
+  background-color: rgba(13, 148, 136, 0.15) !important;
+}
+
+/* Prevent text selection during sidebar interactions */
+.MuiDrawer-root {
+  user-select: none;
+}
+
+/* Ensure smooth hover transitions */
+.MuiListItemButton-root:hover {
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Prevent layout shift during sidebar expansion */
+.MuiDrawer-paper {
+  will-change: width;
+}
+
+/* Ensure proper stacking context */
+.MuiDrawer-root {
+  position: relative;
+}
