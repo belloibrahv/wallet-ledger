@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wallet Ledger
+
+[![Live Demo](https://img.shields.io/badge/View%20Live-Demo-brightgreen)](https://wallet-ledger.vercel.app/)
+
+A modern financial dashboard application built with Next.js, React, and Material-UI.
+
+## 🚀 Live Demo
+
+Check out the live demo: [Wallet Ledger](https://wallet-ledger.vercel.app/)
 
 ## Getting Started
 
