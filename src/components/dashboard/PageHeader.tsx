@@ -122,7 +122,7 @@ export function PageHeader() {
         }}
       >
         {/* User Avatar Group */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mx: 4 }}>
           <AvatarGroup
             max={4}
             sx={{
