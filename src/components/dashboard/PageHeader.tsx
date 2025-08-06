@@ -26,6 +26,7 @@ export function PageHeader() {
           flexWrap: 'wrap',
           gap: 2,
           mb: 3,
+          mx: 4,
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

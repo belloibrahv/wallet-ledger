@@ -42,7 +42,7 @@ function SummaryCard({ data }: SummaryCardProps) {
         boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
         border: '1px solid #F3F4F6',
         borderRadius: 3,
-        bgcolor: 'background.paper',
+        bgcolor: '#eaeff0',
         '&:hover': {
           boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
         },

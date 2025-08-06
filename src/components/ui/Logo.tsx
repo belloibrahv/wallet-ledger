@@ -2,7 +2,24 @@ import React from 'react';
 import Image from 'next/image';
 import { Box } from '@mui/material';
 
-interface LogoProps {
+export interface LogoProps {
+  /**
+   * The variant of the logo to display
+   * @default 'default'
+   */
+  variant?: 'default' | 'icon';
+  
+  /**
+   * Custom size for the logo
+   * @default 112
+   */
+  size?: number;
+  
+  /**
+   * Additional styles to apply to the logo container
+   */
+  sx?: React.CSSProperties;
+  
   /**
    * Whether the logo should be shown in its collapsed state
    * @default false
@@ -20,11 +37,6 @@ interface LogoProps {
    * @default 33
    */
   height?: number;
-  
-  /**
-   * Additional styles to apply to the logo container
-   */
-  sx?: React.CSSProperties;
 }
 
 /**
@@ -32,13 +44,19 @@ interface LogoProps {
  * It handles its own hover state and transitions.
  */
 export const Logo: React.FC<LogoProps> = ({
+  variant = 'default',
+  size = 112,
   collapsed = false,
-  width = 112,
-  height = 33,
+  width,
+  height,
   sx = {},
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const showExpanded = !collapsed || isHovered;
+  
+  const logoWidth = variant === 'icon' ? 32 : width || size;
+  const logoHeight = variant === 'icon' ? 32 : height || (size * 33) / 112; // Maintain aspect ratio
+  const logoSrc = variant === 'icon' ? '/logo-icon.svg' : '/logo.svg';
 
   return (
     <Box
@@ -53,10 +71,10 @@ export const Logo: React.FC<LogoProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <Image
-        src="/logo.svg"
+        src={logoSrc}
         alt="Wallet Ledger Logo"
-        width={showExpanded ? width : Math.min(32, width)}
-        height={height}
+        width={showExpanded ? logoWidth : Math.min(32, logoWidth)}
+        height={logoHeight}
         style={{
           height: 'auto',
           transition: 'all 0.2s ease-in-out',
