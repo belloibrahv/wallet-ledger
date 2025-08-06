@@ -61,13 +61,22 @@ export function PageHeader() {
             </IconButton>
           </Box>
           
-          <StatusBadge status="inactive" label="Active" />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, border: 'solid 1px #eaeff0', width: '70px', height: '30px', borderRadius: '25px', justifyContent: 'center', backgroundColor: '#EAEFF0' }}>
+            <Typography sx={{ 
+              fontSize: '0.875rem', 
+              color: 'text.primary',
+              fontWeight: 500,
+              paddingLeft: '10px',
+            }}>
+              Active
+            </Typography>
+          </Box>
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Button
             variant="contained"
-            startIcon={<ShareIcon fontSize="small" />}
+            // startIcon={<ShareIcon fontSize="small" />}
             sx={{
               bgcolor: '#0D9488',
               color: 'white',

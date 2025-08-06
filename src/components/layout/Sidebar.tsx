@@ -10,7 +10,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import Image from "next/image";
 import { useTheme } from "@mui/material/";
 import {
   Dashboard as DashboardIcon,
@@ -137,25 +136,29 @@ export function Sidebar({
         minHeight: "64px",
         position: 'relative',
       }}>
-        
-        {isExpanded && (
-          <IconButton
-            size="small"
-            sx={{
-              color: "text.secondary",
-              display: { md: "none" },
-              "&:hover": {
-                bgcolor: "rgba(107, 114, 128, 0.1)",
-              },
-              position: 'absolute',
-              right: 8,
-              top: '50%',
-              transform: 'translateY(-50%)',
-            }}
-            onClick={onMobileClose}
-          >
-            <MenuIcon fontSize="small" />
-          </IconButton>
+        {isExpanded ? (
+          <>
+            <Logo variant="default" size={112} />
+            <IconButton
+              size="small"
+              sx={{
+                color: "text.secondary",
+                display: { md: "none" },
+                "&:hover": {
+                  bgcolor: "rgba(107, 114, 128, 0.1)",
+                },
+                position: 'absolute',
+                right: 8,
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+              onClick={onMobileClose}
+            >
+              <MenuIcon fontSize="small" />
+            </IconButton>
+          </>
+        ) : (
+          <Logo variant="icon" size={32} />
         )}
       </Box>
 
@@ -305,13 +308,7 @@ export function Sidebar({
             justifyContent: "space-between",
             minHeight: "64px",
           }}>
-            <Image
-              src="/logo.svg"
-              alt="Wallet Ledger Logo"
-              width={112}
-              height={33}
-              style={{ height: 'auto' }}
-            />
+            <Logo variant="default" size={112} />
             <IconButton
               size="small"
               sx={{
