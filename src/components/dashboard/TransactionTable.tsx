@@ -152,11 +152,11 @@ function TransactionTableRow({ transaction }: TransactionRowProps) {
       </TableCell>
       
       <TableCell>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, border: 'solid 1px #eaeff0', width: '70px', height: '30px', borderRadius: '25px', justifyContent: 'center', backgroundColor: '#EAEFF0' }}>
           <DotIcon 
             sx={{ 
               fontSize: 10, 
-              color: transaction.type === 'Credit' ? '#10B981' : '#EF4444' 
+              color: transaction.type === 'Credit' ? '#10B981' : '#EF4444',
             }} 
           />
           <Typography sx={{ 
