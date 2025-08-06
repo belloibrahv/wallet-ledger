@@ -61,7 +61,7 @@ export function PageHeader() {
             </IconButton>
           </Box>
           
-          <StatusBadge status="active" label="Active" />
+          <StatusBadge status="inactive" label="Active" />
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -83,7 +83,7 @@ export function PageHeader() {
                 boxShadow: 'none',
               },
               '&:focus-visible': {
-                outline: "2px solid #0D9488",
+                outline: "2px solid #4B8B9F",
                 outlineOffset: "2px",
               },
             }}
