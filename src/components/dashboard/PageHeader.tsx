@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import {
   KeyboardArrowDown as ArrowDownIcon,
-  MoreVert as MoreVertIcon,
+  MoreHoriz as MoreHorizIcon,
   Share as ShareIcon,
 } from "@mui/icons-material";
 import { sampleUsers } from "../../data/sampleData";
@@ -76,7 +76,6 @@ export function PageHeader() {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Button
             variant="contained"
-            // startIcon={<ShareIcon fontSize="small" />}
             sx={{
               bgcolor: '#0D9488',
               color: 'white',
@@ -103,7 +102,13 @@ export function PageHeader() {
           <IconButton
             size="small"
             sx={{
-              color: 'text.secondary',
+              color: '#000',
+              border: 'solid 1px #EAEFF0',
+              width: '40px',
+              height: '40px',
+              borderRadius: '17px',
+              justifyContent: 'center',
+              backgroundColor: 'transparent',
               p: 1,
               '&:hover': {
                 bgcolor: 'rgba(107, 114, 128, 0.1)',
@@ -114,7 +119,7 @@ export function PageHeader() {
               },
             }}
           >
-            <MoreVertIcon fontSize="small" />
+            <MoreHorizIcon fontSize="small" />
           </IconButton>
         </Box>
       </Box>
