@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CardContent from "@mui/material/CardContent";
-import { MoreVert as MoreVertIcon } from "@mui/icons-material";
+import { MoreHoriz as MoreHorizIcon } from "@mui/icons-material";
 import { summaryData } from "../../data/sampleData";
 import { SummaryCardData } from "../../types/dashboard";
 
@@ -61,9 +61,9 @@ function SummaryCard({ data }: SummaryCardProps) {
           <Typography
             variant="body2"
             sx={{
-              color: 'text.secondary',
-              fontSize: '0.875rem',
-              fontWeight: 500,
+              color: '#000',
+              fontSize: '1rem',
+              fontWeight: 600,
               lineHeight: 1.4,
             }}
           >
@@ -86,7 +86,7 @@ function SummaryCard({ data }: SummaryCardProps) {
               },
             }}
           >
-            <MoreVertIcon fontSize="small" />
+            <MoreHorizIcon fontSize="small" sx={{ color: '#000' }} />
           </IconButton>
         </Box>
 
@@ -109,9 +109,10 @@ function SummaryCard({ data }: SummaryCardProps) {
         <Typography
           variant="body2"
           sx={{
-            color: getChangeColor(data.change),
+            color: '#444',
             fontSize: '0.875rem',
             fontWeight: 600,
+            fontStyle: 'lighter',
             lineHeight: 1.4,
           }}
         >
