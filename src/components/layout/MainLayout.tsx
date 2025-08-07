@@ -14,6 +14,7 @@ export function MainLayout({ children }: MainLayoutProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
   const handleMobileMenuToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -21,6 +22,10 @@ export function MainLayout({ children }: MainLayoutProps) {
 
   const handleMobileClose = () => {
     setMobileOpen(false);
+  };
+
+  const handleSidebarExpand = (expanded: boolean) => {
+    setSidebarExpanded(expanded);
   };
 
   return (
@@ -39,6 +44,7 @@ export function MainLayout({ children }: MainLayoutProps) {
           mobileOpen={mobileOpen} 
           onMobileClose={handleMobileClose} 
           isMobile={isMobile} 
+          onSidebarExpand={handleSidebarExpand}
         />
 
         <Box
@@ -50,7 +56,8 @@ export function MainLayout({ children }: MainLayoutProps) {
             overflow: "auto",
             bgcolor: "background.default",
             position: "relative",
-            marginLeft: { xs: 0, md: "72px" }, // Account for sidebar width
+            marginLeft: { xs: 0, md: sidebarExpanded ? "240px" : "72px" }, // Dynamic margin based on sidebar state
+            transition: "margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           <Container

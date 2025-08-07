@@ -24,6 +24,7 @@ interface SidebarProps {
   mobileOpen?: boolean;
   onMobileClose?: () => void;
   isMobile?: boolean;
+  onSidebarExpand?: (expanded: boolean) => void;
 }
 
 const DRAWER_WIDTH = 240;
@@ -40,6 +41,7 @@ export function Sidebar({
   mobileOpen = false,
   onMobileClose,
   isMobile = false,
+  onSidebarExpand,
 }: SidebarProps) {
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
@@ -61,6 +63,7 @@ export function Sidebar({
         timeoutRef.current = null;
       }
       setIsExpanded(true);
+      onSidebarExpand?.(true);
     }
   };
 
@@ -69,7 +72,20 @@ export function Sidebar({
       // Set a timeout to collapse the sidebar
       timeoutRef.current = setTimeout(() => {
         setIsExpanded(false);
-      }, 300); // 300ms delay to allow moving mouse back to sidebar
+        onSidebarExpand?.(false);
+      }, 500); // Increased delay for better UX
+    }
+  };
+
+  const handleItemMouseEnter = () => {
+    if (!isMobile && !isExpanded) {
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      setIsExpanded(true);
+      onSidebarExpand?.(true);
     }
   };
 
@@ -83,6 +99,7 @@ export function Sidebar({
         isExpanded
       ) {
         setIsExpanded(false);
+        onSidebarExpand?.(false);
       }
     };
 
@@ -96,18 +113,19 @@ export function Sidebar({
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [isExpanded, isMobile]);
+  }, [isExpanded, isMobile, onSidebarExpand]);
 
   // Reset states when mobile changes
   useEffect(() => {
     if (isMobile) {
       setIsExpanded(false);
+      onSidebarExpand?.(false);
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
       }
     }
-  }, [isMobile]);
+  }, [isMobile, onSidebarExpand]);
 
   const sidebarContent = (
     <Box 
@@ -118,10 +136,14 @@ export function Sidebar({
         bgcolor: "#F8F9FA",
         display: "flex",
         flexDirection: "column",
-        transition: "width 0.3s ease-in-out",
+        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         overflow: "hidden",
-        position: "relative",
+        position: "fixed",
+        left: 0,
+        top: 0,
         zIndex: 1200, // Ensure sidebar is above other content
+        boxShadow: isExpanded ? "0 4px 12px rgba(0, 0, 0, 0.1)" : "none",
+        borderRight: "1px solid #E5E7EB",
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -182,10 +204,13 @@ export function Sidebar({
                     color: isActive ? "#0D9488" : "#6B7280",
                     py: 1.5,
                     px: 2,
+                    transition: "all 0.2s ease-in-out",
                     "&:hover": {
                       backgroundColor: isActive 
                         ? "rgba(13, 148, 136, 0.15)"
                         : "rgba(107, 114, 128, 0.05)",
+                      transform: "translateX(4px)",
+                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                     },
                     "&:focus-visible": {
                       outline: "2px solid #0D9488",
@@ -205,6 +230,10 @@ export function Sidebar({
                     color: "inherit",
                     "& .MuiSvgIcon-root": {
                       fontSize: "1.25rem",
+                      transition: "transform 0.2s ease-in-out",
+                    },
+                    "&:hover .MuiSvgIcon-root": {
+                      transform: "scale(1.1)",
                     }
                   }}>
                     <IconComponent />
@@ -221,6 +250,7 @@ export function Sidebar({
                 <Tooltip title={item.text} placement="right">
                   <ListItemButton
                     onClick={() => handleItemClick(item.text)}
+                    onMouseEnter={handleItemMouseEnter}
                     selected={isActive}
                     sx={{
                       borderRadius: 2,
@@ -237,6 +267,7 @@ export function Sidebar({
                           ? "rgba(13, 148, 136, 0.15)"
                           : "rgba(107, 114, 128, 0.05)",
                         transform: "scale(1.05)",
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                       },
                       "&:focus-visible": {
                         outline: "2px solid #0D9488",
@@ -257,6 +288,10 @@ export function Sidebar({
                       color: "inherit",
                       "& .MuiSvgIcon-root": {
                         fontSize: "1.5rem",
+                        transition: "transform 0.2s ease-in-out",
+                      },
+                      "&:hover .MuiSvgIcon-root": {
+                        transform: "scale(1.1)",
                       }
                     }}>
                       <IconComponent />
@@ -387,22 +422,8 @@ export function Sidebar({
   }
 
   return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        display: { xs: "none", md: "block" },
-        "& .MuiDrawer-paper": {
-          boxSizing: "border-box",
-          width: isExpanded ? DRAWER_WIDTH : DRAWER_WIDTH_COLLAPSED,
-          borderRight: "1px solid #E5E7EB",
-          bgcolor: "#F8F9FA",
-          transition: "width 0.3s ease-in-out",
-          overflow: "hidden",
-        },
-      }}
-      open
-    >
+    <Box sx={{ display: { xs: "none", md: "block" } }}>
       {sidebarContent}
-    </Drawer>
+    </Box>
   );
 }
